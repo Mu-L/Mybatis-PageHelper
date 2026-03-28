@@ -48,6 +48,50 @@ dependencies {
 
 ### 2. Config PageHelper
 
+#### Choosing JSqlParser Version (Optional)
+
+PageHelper uses JSqlParser 4.7 by default. To use a different version of JSqlParser, exclude the default jsqlparser dependency from PageHelper and include the corresponding sqlparser module.
+
+| JSqlParser Version | Module | Description |
+|-------------------|--------|-------------|
+| 4.5 | sqlparser4.5 | Supports JSqlParser 4.5 |
+| 4.7 | Default (no extra config) | PageHelper default version |
+| 4.9 / 5.0 | sqlparser4.9 | JSqlParser 5.0 is API-compatible with 4.9 |
+| 5.1 / 5.2 / 5.3 | sqlparser5.1 | Supports JSqlParser 5.1+ (API-compatible) |
+
+For example, to use JSqlParser 4.9:
+
+```xml
+<dependency>
+    <groupId>com.github.pagehelper</groupId>
+    <artifactId>pagehelper</artifactId>
+    <version>latestVersion</version>
+    <exclusions>
+        <exclusion>
+            <groupId>com.github.jsqlparser</groupId>
+            <artifactId>jsqlparser</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+<dependency>
+    <groupId>com.github.pagehelper</groupId>
+    <artifactId>sqlparser4.9</artifactId>
+    <version>latestVersion</version>
+</dependency>
+```
+
+For SQL parsing timeout protection (10-second timeout), add the following dependency:
+
+```xml
+<dependency>
+    <groupId>com.github.pagehelper</groupId>
+    <artifactId>sqlparser-timeout</artifactId>
+    <version>latestVersion</version>
+</dependency>
+```
+
+> For more details, refer to the [pagehelper-sqlparser](https://github.com/pagehelper/pagehelper-sqlparser) project.
+
 #### 1). Using in mybatis-config.xml
 
 ```xml

@@ -15,6 +15,8 @@
 - Fix typos and link references in English documentation **by Coco Liliace**
 - Add relevant comments to improve code readability **by yesAnd**
 - Resolve dependency security vulnerabilities, update related component versions
+- Maven publishing migrated from legacy OSSRH (oss.sonatype.org) to new Maven Central Portal (central.sonatype.com)
+- pagehelper-sqlparser upgraded to 6.1.1, added sqlparser4.9 and sqlparser5.1 modules for JSqlParser 4.9/5.0/5.1/5.2/5.3 support
 
 #### Compatibility Notes
 - This version maintains backward compatibility with previous versions
@@ -57,7 +59,7 @@ If you want to switch to the 4.5 implementation, follow the configuration steps 
 <dependency>
     <groupId>com.github.pagehelper</groupId>
     <artifactId>pagehelper</artifactId>
-    <version>6.1.0</version>
+    <version>6.1.1</version>
     <exclusions>
         <exclusion>
             <groupId>com.github.jsqlparser</groupId>
@@ -68,7 +70,7 @@ If you want to switch to the 4.5 implementation, follow the configuration steps 
 <dependency>
     <groupId>com.github.pagehelper</groupId>
     <artifactId>sqlparser4.5</artifactId>
-    <version>6.1.0</version>
+    <version>6.1.1</version>
 </dependency>
 ```
 
@@ -95,7 +97,7 @@ seconds):
 <dependency>
     <groupId>com.github.pagehelper</groupId>
     <artifactId>sqlparser-timeout</artifactId>
-    <version>6.1.0</version>
+    <version>6.1.1</version>
 </dependency>
 ```
 

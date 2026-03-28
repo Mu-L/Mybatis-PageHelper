@@ -48,6 +48,50 @@ dependencies {
 
 ### 2. 配置拦截器插件
 
+#### 选择 JSqlParser 版本（可选）
+
+PageHelper 默认使用 JSqlParser 4.7。如需使用其他版本的 JSqlParser，可以从 PageHelper 排除默认的 jsqlparser 依赖，然后引入对应版本的 sqlparser 模块。
+
+| JSqlParser 版本 | 对应模块 | 说明 |
+|----------------|---------|------|
+| 4.5 | sqlparser4.5 | 支持 JSqlParser 4.5 |
+| 4.7 | 默认（无需额外配置） | PageHelper 默认版本 |
+| 4.9 / 5.0 | sqlparser4.9 | JSqlParser 5.0 与 4.9 API 兼容 |
+| 5.1 / 5.2 / 5.3 | sqlparser5.1 | 支持 JSqlParser 5.1+（API 兼容） |
+
+例如，使用 JSqlParser 4.9：
+
+```xml
+<dependency>
+    <groupId>com.github.pagehelper</groupId>
+    <artifactId>pagehelper</artifactId>
+    <version>最新版本</version>
+    <exclusions>
+        <exclusion>
+            <groupId>com.github.jsqlparser</groupId>
+            <artifactId>jsqlparser</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+<dependency>
+    <groupId>com.github.pagehelper</groupId>
+    <artifactId>sqlparser4.9</artifactId>
+    <version>最新版本</version>
+</dependency>
+```
+
+如需 SQL 解析超时保护（10秒超时），可额外引入：
+
+```xml
+<dependency>
+    <groupId>com.github.pagehelper</groupId>
+    <artifactId>sqlparser-timeout</artifactId>
+    <version>最新版本</version>
+</dependency>
+```
+
+> 更多详情请参考 [pagehelper-sqlparser](https://github.com/pagehelper/pagehelper-sqlparser) 项目。
+
 特别注意，新版拦截器是 `com.github.pagehelper.PageInterceptor`。
 `com.github.pagehelper.PageHelper` 现在是一个特殊的 `dialect` 实现类，是分页插件的默认实现类，提供了和以前相同的用法。
 
