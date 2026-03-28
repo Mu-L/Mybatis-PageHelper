@@ -343,8 +343,25 @@ When this parameter is set to `true`, the` offset` parameter in `RowBounds` is u
     adding `/*keep orderby*/` to all subqueries and can set it for a single operation in addition to the global
     configuration.
 
-21. `sqlParser`: configure JSqlParser parser, attention is `com.github.pagehelper.JSqlParser` interface, used to support
-    such as essentially a need for additional configuration.(**6.1.0 remove this parameter**)
+21. `asyncCount`: Default value is `false`. When set to `true`, count queries will be executed asynchronously,
+    which can improve overall pagination query efficiency. Can also be set for individual operations in addition to the global configuration.
+
+22. `asyncCountParallelism`: Thread pool size for async count queries, default value is `Runtime.getRuntime().availableProcessors() * 2`.
+    Only effective when `asyncCount=true`.
+
+23. `countSqlParser`: Configure a custom count SQL parser. Must implement the `com.github.pagehelper.parser.CountSqlParser` interface.
+    Set to the fully qualified class name of the implementation. Default is `DefaultCountSqlParser`. Replaces the count-related functionality
+    from the removed `sqlParser` parameter.
+
+24. `orderBySqlParser`: Configure a custom ORDER BY SQL parser. Must implement the `com.github.pagehelper.parser.OrderBySqlParser` interface.
+    Set to the fully qualified class name of the implementation. Default is `DefaultOrderBySqlParser`.
+
+25. `sqlServerSqlParser`: Configure a custom SqlServer pagination SQL parser. Must implement the `com.github.pagehelper.parser.SqlServerSqlParser` interface.
+    Set to the fully qualified class name of the implementation. Default is `DefaultSqlServerSqlParser`.
+
+> ~~`sqlParser`: Configure JSqlParser parser, which is the `com.github.pagehelper.JSqlParser` interface, used to support
+> sqlserver and other scenarios that need additional configuration. **This parameter was removed in 6.1.0**, and its functionality
+> has been split into three separate parameters: `countSqlParser`, `orderBySqlParser`, and `sqlServerSqlParser`.~~
 
 #### 6. How to choose Configure these parameters
 

@@ -301,8 +301,23 @@ DEBUG [main] -
 
 20. `keepSubSelectOrderBy`：转换count查询时保留子查询的 order by 排序。可以避免给所有子查询添加 `/*keep orderby*/`，除全局配置外，可以针对单次操作进行设置。
 
-21. `sqlParser`：配置 JSqlParser 解析器，注意是 `com.github.pagehelper.JSqlParser` 接口，用于支持 sqlserver
-    等需要额外配置的情况(**6.1.0 移除该参数**)。
+21. `asyncCount`：默认值为 `false`。设置为 `true` 时，count 查询会异步执行，可以提高分页查询的整体效率。
+    除全局配置外，也可以针对单次操作进行设置。
+
+22. `asyncCountParallelism`：异步 count 查询的线程池大小，默认值为 `Runtime.getRuntime().availableProcessors() * 2`。
+    仅在 `asyncCount=true` 时有效。
+
+23. `countSqlParser`：配置自定义的 count SQL 解析器，需要实现 `com.github.pagehelper.parser.CountSqlParser` 接口，
+    配置为实现类的全限定名称。默认使用 `DefaultCountSqlParser`。用于替代已移除的 `sqlParser` 参数中 count 相关的功能。
+
+24. `orderBySqlParser`：配置自定义的 ORDER BY SQL 解析器，需要实现 `com.github.pagehelper.parser.OrderBySqlParser` 接口，
+    配置为实现类的全限定名称。默认使用 `DefaultOrderBySqlParser`。
+
+25. `sqlServerSqlParser`：配置自定义的 SqlServer 分页 SQL 解析器，需要实现 `com.github.pagehelper.parser.SqlServerSqlParser` 接口，
+    配置为实现类的全限定名称。默认使用 `DefaultSqlServerSqlParser`。
+
+> ~~`sqlParser`：配置 JSqlParser 解析器，注意是 `com.github.pagehelper.JSqlParser` 接口，用于支持 sqlserver
+> 等需要额外配置的情况。**该参数已在 6.1.0 中移除**，相关功能已拆分为 `countSqlParser`、`orderBySqlParser` 和 `sqlServerSqlParser` 三个独立参数。~~
 
 **重要提示：**
 
